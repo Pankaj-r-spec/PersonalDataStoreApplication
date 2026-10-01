@@ -1,0 +1,43 @@
+server:
+  port: 8081
+
+app:
+  jwt:
+    secret: "Q2VybmV0VG9rZW5TZWNyZXQxMjM0NTY3ODkwQmFzZTY0" 
+    expiration-ms: 86400000
+
+spring:
+  application:
+    name: personal-data-store
+  neo4j:
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: password123
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: personal-data-store-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.data.neo4j: INFO
+    org.springframework.kafka: INFO
+    com.personaldatastore.application: DEBUG

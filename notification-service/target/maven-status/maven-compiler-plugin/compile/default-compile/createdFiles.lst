@@ -1,0 +1,6 @@
+com\personaldatastore\notification\AlertNotificationProcessor.class
+com\personaldatastore\notification\AlertNotification.class
+com\personaldatastore\notification\NotificationServiceApplication.class
+com\personaldatastore\notification\AlertNotificationRepository.class
+com\personaldatastore\notification\NotificationAlertConsumer.class
+com\personaldatastore\notification\KafkaConfig.class
